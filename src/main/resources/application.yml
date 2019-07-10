@@ -1,0 +1,32 @@
+
+
+
+
+spring:
+  application:
+    name: cloud-order
+server:
+  port: 8081
+  tomcat:
+    max-threads: 200
+eureka:
+  client:
+    fetch-registry: true #是否从eureka获取注册信息
+    register-with-eureka: true #是否要将自己注册到eureka上去
+    service-url:
+      defaultZone: http://root:123456@localhost:8866/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 1 #心跳时间
+    lease-expiration-duration-in-seconds: 2 #让eureka检测心跳的异常间隔时间
+feign:
+  hystrix:
+    enabled: true
+swagger:
+  title: 订单服务
+  description: 提供订单服务接口
+  base-package: com.jiayaxing.clouddemo.cloudorder.controller
+  enabled: true  #http://localhost:8081/swagger-ui.html即可访问swagger
+
+ribbon:
+  ReadTimeout: 60000 #读数据超时时间
+  ConnectTimeout: 60000  #建立连接超时时间
